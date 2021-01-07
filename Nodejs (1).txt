@@ -1,0 +1,72 @@
+--------------------NODEJS-------------------
+CENTOS7
+1.sudo yum update
+2. Next, add the NodeSource repository to the system with:
+
+curl –sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+3. The output will prompt you to use the following command if you want to install Node.js and npm:
+
+sudo yum install –y nodejs
+4. Finally, verify the installed software with the commands:
+
+node –version
+
+5.Now create a dir
+mkdir nodejs
+cd nodejs
+6.vim firstscript.js
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+}).listen(8080, 'APP_PRIVATE_IP_ADDRESS');
+console.log('Server running at http://APP_PRIVATE_IP_ADDRESS:8080/');
+
+Now open port
+
+7.Now execute 
+node firstscript.js
+8.Output
+HELLO WORLD
+
+
+----------FOR WEBSITE-------------
+cd nodejs
+1.vim web.js
+var http = require('http');
+var fs = require('fs');
+
+var server = http.createServer(function (request, response) {
+
+    if (request.url === "/") {
+        fs.readFile("index.html", function (error, pgResp) {
+            if (error) {
+                response.writeHead(404);
+                response.write('Page is not found');
+            } else {
+                response.writeHead(200, { 'Content-Type': 'text/html' });
+                response.write(pgResp);
+            }
+
+            response.end();
+        });
+    } else {
+
+        response.writeHead(200, { 'Content-Type': 'text/html' });
+        response.write('<h1>Default Content</h1>');
+        response.end();
+    }
+});
+
+server.listen(1024);
+console.log('server is listening on 1024');
+
+2.Take a sample webapp
+wget ----
+ls
+extract 
+4.node web.js
+
+Now browse
+                                              
+
